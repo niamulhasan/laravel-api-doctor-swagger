@@ -55,6 +55,37 @@ This will register the package's service provider for your project.
 
 
 ## Usage
+For now this package can generate doc only for **URL parameters** and **Request body**. It will not generate doc for **Query parameters**.
+
+To be able to generate doc for Body parameters you must have to use **Form Request** in your controller method.
+
+### Example
+In your controller method:
+```php
+public function filter(CircularFilterRequest $request): array
+    {
+        return CircularResource::collection(CircularsService::filter($request->job_type, $request->order_by, $request->order, $request->tags))->toArray($request);
+    }
+```
+In your Form Request:
+```php
+class CircularFilterRequest extends FormRequest
+{
+    public function rules()
+    {
+        return [
+            'order_by' => 'string|nullable|in:created_at,starting_date,deadline',
+            'order' => 'string|nullable|in:asc,desc',
+            'job_type' => 'string|nullable|in:gov,non-gov',
+            'tags' => 'array|nullable',
+        ];
+    }
+}
+```
+
+
+
+
 A new route will be added to your project. You can access the swagger documentation by visiting the following url:
 ```
 http://your-project-url/api-docs
