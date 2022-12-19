@@ -49,7 +49,7 @@ composer require niamulhasan/api-doctor-swagger
 ### Edit your `config/app.php` file
 Add the following line to the `providers` array:
 ```php
-Niamulhasan\ApiDoctorSwagger\ApiDoctorSwaggerProvider::class,
+NiamulHasan\ApiDoctorSwagger\Providers\ApiDoctorProvider::class,
 ```
 This will register the package's service provider for your project.
 
