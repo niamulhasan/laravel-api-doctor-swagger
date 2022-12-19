@@ -1,0 +1,22 @@
+{
+    "name": "niamulhasan/api-doctor-swagger",
+    "description": "A swagger OpenApi Documentation generator for laravel; This package requires no phpDoc comments",
+    "type": "library",
+    "require": {
+        "php": ">=7.3",
+        "illuminate/support": ">=10.x-dev"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Niamulhasan\\ApiDoctorSwagger\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "niamulhasan",
+            "email": "niamulhasanbd@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
