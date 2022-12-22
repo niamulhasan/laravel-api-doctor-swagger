@@ -6,7 +6,11 @@ A swagger OpenApi Documentation generator for laravel. This package **requires n
 All other swagger packages require you to write phpDoc comments. This package is different. It will generate swagger documentation from your routes and controllers.
 
 ## Installation
-### Step 1: Add the package repository to your composer.json file
+### Step 1: Add these lines to your .env file
+```
+SWAGGER_VERSION=2.0
+```
+### Step 2: Add the package repository to your composer.json file
 In your projects `composer.json` file,add the following "repositories" section:
 ```json
 "repositories": [
@@ -41,12 +45,12 @@ Example:
         
 }
 ```
-### Step 2: Install the package
+### Step 3: Install the package
 Then run the following command to install the package:
 ```bash
 composer require niamulhasan/api-doctor-swagger
 ```
-### Edit your `config/app.php` file
+### Step: 4 Edit your `config/app.php` file
 Add the following line to the `providers` array:
 ```php
 Niamulhasan\ApiDoctorSwagger\ApiDoctorSwaggerProvider::class,
