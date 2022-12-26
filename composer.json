@@ -18,5 +18,12 @@
             "email": "niamulhasanbd@gmail.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Niamulhasan\\ApiDoctorSwagger\\Providers\\ApiDoctorProvider"
+            ]
+        }
+    }
 }
