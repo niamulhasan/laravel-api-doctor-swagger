@@ -9,7 +9,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Niamulhasan\\ApiDoctorSwagger\\": "src/"
+            "NiamulHasan\\ApiDoctorSwagger\\": "src/"
         }
     },
     "authors": [
@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Niamulhasan\\ApiDoctorSwagger\\Providers\\ApiDoctorProvider"
+                "NiamulHasan\\ApiDoctorSwagger\\Providers\\ApiDoctorProvider"
             ]
         }
     }
