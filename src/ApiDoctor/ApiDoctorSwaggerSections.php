@@ -51,6 +51,8 @@ class ApiDoctorSwaggerSections
          - application/json
        produces:
          - application/json
+       security:
+         - bearerAuth: []
        responses:
          '200':
            description: successful operation
