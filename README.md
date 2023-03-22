@@ -45,6 +45,9 @@ Example:
         
 }
 ```
+
+Set the `"minimum-stability": "dev"` in composer.json
+
 ### Step 3: Install the package
 Then run the following command to install the package:
 ```bash
