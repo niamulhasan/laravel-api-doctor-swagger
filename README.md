@@ -63,6 +63,13 @@ This will register the package's service provider for your project.
 ### Step 5: Publish the package's config file
 Run the following command to publish the package's config file:
 
+### Step 6: If you face csrf_token missmatch issue
+
+    `protected $except = [
+        'api/*'
+    ];`
+add this in your `app/Http/Middleware/VerifyCsrfToken.php`
+
 
 ## Usage
 For now this package can generate doc only for **URL parameters** and **Request body**. It will not generate doc for **Query parameters**.
