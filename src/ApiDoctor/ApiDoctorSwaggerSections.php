@@ -164,15 +164,19 @@ class ApiDoctorSwaggerSections
     public static function buildProperties($rules)
     {
         $result = "";
-        foreach ($rules as $rule => $value) {
-            preg_match('/(.*?)\|/', $value, $matches);
-            $type = $matches[1];
-            $propertyString = "
+        try {
+            foreach ($rules as $rule => $value) {
+                preg_match('/(.*?)\|/', $value, $matches);
+                $type = $matches[1];
+                $propertyString = "
                    {$rule}:
                        type: string
                        description: {$value}
            ";
-            $result .= $propertyString;
+                $result .= $propertyString;
+            }
+        } catch (\Exception $e) {
+//            echo $e->getMessage();
         }
         return $result;
     }

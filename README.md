@@ -53,7 +53,7 @@ Then run the following command to install the package:
 ```bash
 composer require niamulhasan/api-doctor-swagger
 ```
-### Step: 4 Edit your `config/app.php` file
+### Step: 4 Edit your `config/app.php` file (Laravel 11 `bootstrap/providers.php`)
 Add the following line to the `providers` array:
 ```php
 NiamulHasan\ApiDoctorSwagger\Providers\ApiDoctorProvider::class,
@@ -69,6 +69,16 @@ Run the following command to publish the package's config file:
         'api/*'
     ];`
 add this in your `app/Http/Middleware/VerifyCsrfToken.php`
+
+#### For Laravel 11: in `bootstrap/app.php`
+add `$middleware->validateCsrfTokens(except: ['api/*']);` in middleware
+Like this
+```php
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->validateCsrfTokens(except: ['api/*']);
+})
+```
+
 
 
 ## Usage
