@@ -149,9 +149,6 @@ http://your-project-url/swagger-yaml-file-generated
 ```
 
 ## Conclusion
-This package is being developed for my own projects. I will be adding more features to it as I need them. If you have any suggestions or find any bug please feel free to open an issue or a pull request.
-
-## Conclusion
 This package has been developed for our own needs.
 I will be adding more features and improvements to it as I need them.
 Feel free to open an issue or a pull request for bug fixes or new features. 
