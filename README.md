@@ -1,9 +1,22 @@
 # API Doctor Swagger for Laravel (Auto Generator).
-A swagger OpenApi Documentation generator for laravel. This package **requires no phpDoc comments**
+A swagger OpenApi Documentation auto generator for laravel. This package **requires no phpDoc or any kind of comments**
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=laravel-api-doctor-swagger&label=Views&color=0e75b6&style=flat" alt="niamulhasan" /> </p>
 
-## About 
-All other swagger packages require you to write phpDoc comments. This package is different. It will generate swagger documentation from your routes and controllers.
+## Motivation
+When I was trying to generate swagger documentation for my laravel project, I found that all the available packages require you to write phpDoc or other form of comments. 
+I didn't want to write comments for all my routes and controllers. as it is time-consuming and I am lazy. And the documentation gets outdated very quickly creating a maintenance headache and a source of inconsistency. 
+So I decided to create a package that will generate the swagger documentation from the routes and controllers automatically without any form of comments. 
+
+## Features
+- Generates swagger documentation automatically from the routes and controllers.
+- No need to write phpDoc or any other form of comments.
+- Generates documentation for URL parameters.
+- Generates documentation for Request body using the `Form Request` type.
+
+## Limitations
+- Currently, response documentation is not generated.
+- File upload and multipart form data are not supported. 
+
 
 ## Installation
 ### Step 1: Add these lines to your .env file
@@ -46,32 +59,45 @@ Example:
 }
 ```
 
+### Step 3: Set the minimum stability 
 Set the `"minimum-stability": "dev"` in composer.json
 
-### Step 3: Install the package
+### Step 4: Install the package
 Then run the following command to install the package:
 ```bash
 composer require niamulhasan/api-doctor-swagger
 ```
-### Step: 4 Edit your `config/app.php` file (Laravel 11 `bootstrap/providers.php`)
+### Step: 5 Add the provider
 Add the following line to the `providers` array:
 ```php
 NiamulHasan\ApiDoctorSwagger\Providers\ApiDoctorProvider::class,
 ```
+
+You can find the providers in `config/app.php` file
+for Laravel 11 it's in the `bootstrap/providers.php` file.
+
 This will register the package's service provider for your project.
 
 ### Step 5: Publish the package's config file
 Run the following command to publish the package's config file:
+```bash 
+php artisan vendor:publish --provider="NiamulHasan\ApiDoctorSwagger\Providers\ApiDoctorProvider"
+```
 
-### Step 6: If you face csrf_token missmatch issue
+### Step 6: Turn off CSRF protection for the API routes 
+If you face csrf_token missmatch issue
 
     `protected $except = [
         'api/*'
     ];`
-add this in your `app/Http/Middleware/VerifyCsrfToken.php`
+add this in your `app/Http/Middleware/VerifyCsrfToken.php` file
 
-#### For Laravel 11: in `bootstrap/app.php`
-add `$middleware->validateCsrfTokens(except: ['api/*']);` in middleware
+#### For Laravel 11: in `bootstrap/app.php` file
+add this
+```php
+$middleware->validateCsrfTokens(except: ['api/*']);
+``` 
+in middleware
 Like this
 ```php
 ->withMiddleware(function (Middleware $middleware) {
@@ -124,3 +150,8 @@ http://your-project-url/swagger-yaml-file-generated
 
 ## Conclusion
 This package is being developed for my own projects. I will be adding more features to it as I need them. If you have any suggestions or find any bug please feel free to open an issue or a pull request.
+
+## Conclusion
+This package has been developed for our own needs.
+I will be adding more features and improvements to it as I need them.
+Feel free to open an issue or a pull request for bug fixes or new features. 
