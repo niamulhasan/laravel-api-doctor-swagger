@@ -135,13 +135,13 @@ class ApiDoctorSwaggerSections
             if (!empty($rules)) {
                 $properties = self::buildProperties($rules);
 
-                $description = "";
+                $description = "Parameters Validation Rules:\n\n\n";
                 foreach ($rules as $key => $value) {
-                    $description .= "=> " . $key . " - " . $value . "      ";
+                    $description .= "    • " . $key . ": " . $value . "\n\n";
                 }
 
                 $schema = "
-           description: {$description}
+           description: '{$description}'
            schema:
                type: object
                properties:
@@ -160,24 +160,61 @@ class ApiDoctorSwaggerSections
         return $result;
     }
 
-
     public static function buildProperties($rules)
     {
-        $result = "";
+        $result = [];
         try {
             foreach ($rules as $rule => $value) {
-                preg_match('/(.*?)\|/', $value, $matches);
-                $type = $matches[1];
-                $propertyString = "
-                   {$rule}:
-                       type: string
-                       description: {$value}
-           ";
-                $result .= $propertyString;
+                $type = 'string';
+                try {
+                    preg_match('/(.*?)\|/', $value, $matches);
+                    $type = $matches[1];
+                } catch (\Exception $e) {
+                    $type = 'string';
+                }
+                $result[$rule] = $type;
             }
         } catch (\Exception $e) {
 //            echo $e->getMessage();
         }
-        return $result;
+
+//      ===========
+        //remove duplicate additional properties that are mentioned with key '.*'
+        //example:
+        //{
+        //  "sort_by": "string",
+        //  "is_ascending": "string",
+        //  "with": "string",
+        //  "with.*": "string",
+        //  "artist_ids": "string",
+        //  "artist_ids.*": "string",
+        //  "genre_ids": "string",
+        //  "genre_ids.*": "string"
+        //}
+        //to:
+        //{
+        //  "sort_by": "string",
+        //  "is_ascending": "string",
+        //  "with": "string",
+        //  "artist_ids": "string",
+        //  "genre_ids": "string"
+        //}
+//      ===========
+        $result = array_filter($result, function ($key) {
+            return !preg_match('/\.\*/', $key);
+        }, ARRAY_FILTER_USE_KEY);
+
+
+        //build properties section
+        $properties = "";
+        foreach ($result as $property => $type) {
+            $propertyString = "
+                   {$property}:
+                       type: string
+                       description: {$type}
+           ";
+            $properties .= $propertyString;
+        }
+        return $properties;
     }
 }
