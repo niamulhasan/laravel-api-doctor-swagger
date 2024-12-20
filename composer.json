@@ -1,5 +1,5 @@
 {
-    "name": "niamulhasan/api-doctor-swagger",
+    "name": "niamulhasan/laravel-swagger-ui-generator",
     "description": "A swagger OpenApi Documentation generator for laravel; This package requires no phpDoc comments",
     "type": "library",
     "require": {
