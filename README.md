@@ -1,4 +1,4 @@
-# API Doctor Swagger for Laravel (Auto Generator).
+# Laravel Swagger API Doc Generator - API Doctor.
 A swagger OpenApi Documentation auto generator for laravel. This package **requires no phpDoc or any kind of comments**
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=laravel-api-doctor-swagger&label=Views&color=0e75b6&style=flat" alt="niamulhasan" /> </p>
 
